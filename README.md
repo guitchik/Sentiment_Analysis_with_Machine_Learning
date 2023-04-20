@@ -1,54 +1,60 @@
-# Building a High-Performing Stock Portfolio with Machine Learning and Sentiment Analysis
+# Studying Sentiment Analysis and its effects on Machine Learning Predictions
 
 
 
-##### Group Members: Ram Gollakota, Celeste Terell, Taylor Little and Timothy Prost
+##### Group Members: Ram Gollakota, Celeste Terell, Taylor Little, and Timothy Prost
 
 
 
 ## Motivation and Summary
 
-We will create a portfolio of 5 stocks based on stocks identified through sentiment analysis. We will assume an investment of $100,000. We will use machine learning algorithms to discover the best trading strategy for the portfolio. Some may be buy and some sell. We will start with a seed of $100,000 and provide our return on investment based on the algorithmic trading model.
+We used traditional algorithmic trading algorithms, specifically Bollinger Bands, to analyze Apple's stock price (AAPL) and identify potential trading opportunities based on stock price volatility.  We used Random Forest Algorithm to produce a  classification report.
+
+Next, we incorporated sentiment analysis using upvote scores from the subreddit "Wall Street Bets." We ran the Bollinger Bands analysis to identify the entry and exit points.  We also performed the Random Forest predictive model and its classification report.  We compared both approaches to see what difference we could find by incorporating sentiment analysis data.
+
+
 
 ## Sourcing Data
 
-Part 1. Use sentiment analysis to identify 5 stocks. [ if we are not able to make progress we will assume these 5 stocks: APPL, BO, BAC. T, GM
+Wall Street Bets (WSB):  https://www.reddit.com/r/wallstreetbets/
 
-Part 2. Source data from Alpaca API and create dataframe with 4-5 year data
+Alpaca Trading:  https://alpaca.markets/
 
 
 
-## Data Cleanup & Model Training
-
-Part 3.  Clean data, generate SMA Values. 
-
-Part 4. Scale data using StandardScaler
-
-part 5. Split to Train and Test data
+## Collection, exploration, and cleaning process:   
+- Web scraping on WSB to get upvote ratios and score data
+- Merge the Alpaca daily trading data with the sentiment scores from WSB
+- Overcame issues of merging two different time and date-indexed data frames
+- Had to address missing data in the sentiment analysis
 
 
 
 
+## Approach
 
-## Model Evaluation
+#### Libraries and APIs:  
+Pandas, Numpy, Finta, Alpaca Trade API, Requests, PMAW, Panel
 
-A. Baseline Algorithm:  Start with SVM Model. Get classification matrix. Create Prediction Graph.
+#### Breakdown of tasks and roles:  
+Ram - Trading and machine learning
+Tim - Visualizations
+Taylor - Web scraping
+Celeste - Git support, Presentation
 
-B. Adjust baseline with different mix of train and test data. 
+#### Challenges:
+Scraping the WSB subreddit for ticker symbols, dates, times, and up/down votes
 
-C. Evaluate AdaBoost algorithm. Get classification matrix. Create prediction graph.
-
-D. Evaluate LogisticRegression algorithm. Get classificant matrix. Create prediction graph.
-
-E. Evaluate XGBoost available on SageMaker to repeat above steps.
-
-
-
-
-
-## Discussion
-
-Compare the results from different models.
+#### Successes:  
+For Taylor, figuring out how to scrape a website for data, working with indices, and getting time stamping across platforms to work!
 
 
 
+## Findings:
+
+- Stock prediction performance decreased slightly by adding sentiment analysis.  The precision-recall scores were 4-5% lower. 
+
+- The number of entry points was 3x more with the sentiment analysis than without. 
+
+#### Overall, our conclusions:
+Incorporating sentiment analysis from sites such as WSB in a trading algorithm is possible.  However, the resulting model may be biased toward more "buy" signals than trading "exits."
